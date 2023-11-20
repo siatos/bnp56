@@ -3,13 +3,16 @@
 angle_vec = [10 20 30]
 angle_vec = deg2rad(angle_vec)  
 
+%% initial points
 A1 = [0 0 0]
 B1 = [1 1 1]
 C1 = [2 2 2]
 
-A2 = apply_euler(A1, angle_vec)
-B2 = apply_euler(B1, angle_vec)
-C2 = apply_euler(C1, angle_vec)
+final_rotation = rotation_matrix(angle_vec)
+
+A2 = A1 * final_rotation
+B2 = B1 * final_rotation
+C2 = C1 * final_rotation
 
 DA = euclid_dist(A1, A2)
 DB = euclid_dist(B1, B2)
@@ -32,12 +35,10 @@ end
 
 %% Function definition for euler transformation %%%
 %% Uses the euler tranformation matrices (3x3) to
-%% tranform initial coordinate point (a 1x3 vector) to a new point after
-%% applying pitch-yaw-roll (a 1x3 vector in rads)
-%% init_pont: 1x3 vector
+%% calculate rotation matrix
 %% angle_vector: 1x3 vector (values in rads)
-%% return: new point (1x3 vector)
-function newpoint = apply_euler(init_point, angle_vec)
+%% return: rotation matrix (3x3)
+function rot_matrix = rotation_matrix(angle_vec)
    psi = angle_vec(1,1)
    th  = angle_vec(1,2)
    phi = angle_vec(1,3)
@@ -45,7 +46,7 @@ function newpoint = apply_euler(init_point, angle_vec)
    Ry = [cos(th) 0 sin(th); 0 1 0; -sin(th) 0 cos(th)]
    Rz = [cos(phi) -sin(phi) 0; sin(phi) cos(phi) 0; 0 0 1]
 
-   newpoint = ((init_point*Rx)*Ry)*Rz
+   rot_matrix = Rx*Ry*Rz
 end
 
 
