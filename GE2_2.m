@@ -1,6 +1,8 @@
-% ventricle.m
+% 
 %
 % MATLAB m-file to compute isovolumic pressure using ventricle model
+% adapted from the book Introduction to biomedical engineering JD Enderle JD Bronzino
+% Chapt. 4 Biomechanics (4.7 Cardiovascular Dynamics) pp 203 Example Problem 4.15
 %
 % Initial conditions:
 %
