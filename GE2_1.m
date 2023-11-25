@@ -47,7 +47,7 @@ end
 %% Function definition for euler transformation %%%
 %% Uses the euler tranformation matrices (3x3) to
 %% calculate rotation matrix
-%% angle_vector: 3x1 vector column (values in rads)
+%% angle_vector: 3x1 vector (values in rads)
 %% return: rotation matrix (3x3)
 function rot_matrix = rotation_matrix(angle_vec)
    psi = angle_vec(1,1)
