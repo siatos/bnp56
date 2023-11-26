@@ -1,6 +1,6 @@
 % 
 %
-% MATLAB m-file to compute isovolumic pressure using ventricle model
+% Compute isovolumic pressure using ventricle model
 % adapted from the book Introduction to biomedical engineering JD Enderle JD Bronzino
 % Chapt. 4 Biomechanics (4.7 Cardiovascular Dynamics) pp 203 Example Problem 4.15
 %
@@ -18,13 +18,13 @@ tp = 0.371;
 tr = 0.299;
 tb = 0.258;
 alpha = 2.88;
-Initial_Vv0 = [120 180]
+Initial_Vv0 = [120 180]     %% Initial (end-diastolic) ventricular volume
+
 pv = zeros(2, 1000)
 for i=1:2
-    Vv0 = Initial_Vv0(1,i)
-    %Vv0 = 120; % Initial (end-diastolic) ventricular volume
+    Vv0 = Initial_Vv0(1,i)  %% Initial (end-diastolic) ventricular volume
     %
-    % Compute intermediate term denom
+    % Compute intermediate term denominator
     % to simplify computations:
     %
     denom = ((1.-exp(-(tp/tc)^alpha))*exp(-((tp-tb)/tr)^alpha));
@@ -68,8 +68,8 @@ end
 
 hold on
 
+%% Use red and black colors for the plots
 plot(t,pv(1,:),' r', 'linewidth', 2.5)
-
 plot(t,pv(2,:),' k', 'linewidth', 2.5)
 
 %grid on
@@ -77,7 +77,7 @@ title('Isovolumic Ventricular Pressure')
 xlabel('Time [s]')
 ylabel('Ventricular Pressure Pv [mmHg]')
 
-% add a legend
+%% add a legend for each graph in the plot
 legend (lgnd{1}, lgnd{2},"location", "northeast");                
 set (legend, "fontsize", 12);
 hold off

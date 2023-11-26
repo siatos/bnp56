@@ -32,22 +32,26 @@ function rad_vec = deg2rad(deg_vec)
    rad_vec = (deg_vec * pi)/180
 end
 
+%% Note:
 %% since we will apply matrix multiplication 
 %% each New_Point is derived from the Initial_Point using the formula
-%% New_Point = (Rz*Ry*Rx)*Initial_Point where
-%% Rx is the Pitch rotation around x-axis
-%% Ry is the Yaw rotation around y-axis
-%% Rz is the Roll rotation around z-axis
+%% New_Point = (Rz*Ry*Rx)*Initial_Point 
+%% Both points are 3x1 vectors to satisy the matrix multiplication 
+%% R=Rz*Ry*Rx is a 3x3 matrix the final rotation matrix
+%% 
+%%  Rx is the Pitch rotation around x-axis
+%%  Ry is the Yaw rotation around y-axis
+%%  Rz is the Roll rotation around z-axis
 %% see:
 %% Glabe, J. (2021). Euler Angles and Roll Pitch Yaw Representation. 
 %% In: Ang, M.H., Khatib, O., Siciliano, B. (eds) Encyclopedia of Robotics. 
-%% Springer, Berlin, Heidelberg. https://doi.org/10.1007/978-3-642-41610-1_129-1 
+%% Springer, Berlin, Heidelberg. https://doi.org/10.1007/978-3-642-41610-1_129-1
 
 
 %% Function definition for euler transformation %%%
 %% Uses the euler tranformation matrices (3x3) to
 %% calculate rotation matrix
-%% angle_vector: 3x1 vector (values in rads)
+%% angle_vec: 1x3 vector (values in rads)
 %% return: rotation matrix (3x3)
 function rot_matrix = rotation_matrix(angle_vec)
    psi = angle_vec(1,1)
@@ -62,10 +66,10 @@ end
 
 
 %% Function definition for euclidean distance %%%
-%% Takes as input 2 3D points - 2 vectors 1x3
+%% Takes as input 2 3D points - 2 column vectors 3x1
 %% and returns the euclidean distance
-%% start_point: 3x1 vector column
-%% end_point:   3x1 vector column
+%% start_point: 3x1 vector column vector
+%% end_point:   3x1 vector column vector
 %% return:      number
 function res = euclid_dist(start_point, end_point)
   diff_vect = end_point - start_point 
