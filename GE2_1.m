@@ -36,7 +36,7 @@ end
 %% since we will apply matrix multiplication 
 %% each New_Point is derived from the Initial_Point using the formula
 %% New_Point = (Rz*Ry*Rx)*Initial_Point 
-%% Both points are 3x1 vectors to satisy the matrix multiplication 
+%% Both points are 3x1 vectors to satisfy the matrix multiplication 
 %% R=Rz*Ry*Rx is a 3x3 matrix the final rotation matrix
 %% 
 %%  Rx is the Pitch rotation around x-axis
