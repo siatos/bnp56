@@ -1,0 +1,40 @@
+%% read mri and pet images
+mri_img = imread('mri221x279.png')
+pet_img = imread('petGrey221x279.png')
+figure(1)
+imshow(mri_img)
+title('MRI image')
+figure(2)
+imshow(pet_img)
+title('PET image')
+%fused_img = (mri_img + pet_img)/2
+
+%% fuse images
+fused_img = fuse_images(mri_img, pet_img)
+figure(3)
+imshow(fused_img)
+title('FUSED image')
+
+%% normalize fused image
+normalized_img = normalize_image(fused_img)
+figure(4)
+imshow(normalized_img)
+title('Normalized image')
+
+
+%% Function fuse images %%
+function out = fuse_images(img1, img2)
+  img1 = double(img1);
+  img2 = double(img2);
+  out = uint8((img1 + img2)/2);
+end
+
+
+
+%% Function normalize image %%
+function out = normalize_image(input_img)
+  input = double(input_img);
+  minval = min(min(input));
+  maxval = max(max(input));
+  out = uint8((input - minval) * 255 / (maxval - minval));
+end
