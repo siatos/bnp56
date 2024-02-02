@@ -16,6 +16,9 @@ title('Mask Image for Region Isolation')
 %% but not for Matlab
 mask_img = mask_img/255  
 
+%% this one should also work
+%%mask_img =uint8(imbinarize(mask_img))
+
 ANDimg = AND_images(CT_img, mask_img)
 figure(3)
 imshow(ANDimg)
