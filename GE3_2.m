@@ -10,6 +10,12 @@ imshow(mask_img)
 title('Mask Image for Region Isolation')
 
 %% Isolate Region of the original Image-CT scan using a Mask
+
+%% Matlab uses value 255 for while while Octave 1
+%% ANDing buy element multiplication of two matrices will work for Ocate 
+%% but not for Matlab
+mask_img = mask_img/255  
+
 ANDimg = AND_images(CT_img, mask_img)
 figure(3)
 imshow(ANDimg)
